@@ -1,0 +1,12 @@
+/* Disable WordPress Auto Update, copy paste to file wp-config.php */
+/* Disable WordPress Auto Update */
+define( 'WP_AUTO_UPDATE_CORE', false );
+
+/* To disable WordPress Core, Themes & Plugins, and copy paste these code to file function.php */
+/* It is located on directory /wp-content/theme/[THEME_NAME] */
+/* Disable WordPress Core, Themes & Plugins  */
+function remove_core_updates(){
+global $wp_version;return(object) array('last_checked'=> time(),'version_checked'=> $wp_version,);}
+add_filter('pre_site_transient_update_core','remove_core_updates');
+add_filter('pre_site_transient_update_themes','remove_core_updates');
+add_filter('pre_site_transient_update_plugins','remove_core_updates');
